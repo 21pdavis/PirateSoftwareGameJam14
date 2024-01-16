@@ -3,15 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Grid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -46,4 +47,10 @@ TagManager:
     locked: 0
   - name: Mushrooms
     uniqueID: 2217230997
+    locked: 0
+  - name: Objects
+    uniqueID: 953505055
+    locked: 0
+  - name: Player
+    uniqueID: 1261685019
     locked: 0
