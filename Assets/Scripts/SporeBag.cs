@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SporeBag : MonoBehaviour
@@ -9,23 +10,33 @@ public class SporeBag : MonoBehaviour
         Exploding
     }
 
+    [Header("Throw Options")]
     [SerializeField] float cookTime;
     [SerializeField] float throwSpeed;
     [SerializeField] float arcSize;
 
+    [Header("References")]
+    [SerializeField] GameObject sporeCloudPrefab;
+
     internal BagState state = BagState.Held;
 
+    private SpriteRenderer spriteRenderer;
+
+    // throw positions
+    private Vector2 origin;
+    private Vector2 destination;
+    private Vector2 relativeOrigin;
+    private Vector2 relativeDestination;
+    private Vector2 midpoint;
+
+    // times
     private float spawnTime;
-    private Vector2 throwOrigin;
-    private Vector2 throwDestination;
-    private Vector2 throwRelOrigin;
-    private Vector2 throwRelDestination;
-    private Vector2 throwMidpoint;
     private float timeThrown;
     private float travelTime;
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         spawnTime = Time.time;
     }
 
@@ -34,39 +45,57 @@ public class SporeBag : MonoBehaviour
         if (Time.time > spawnTime + cookTime)
         {
             // TODO: spawn spore cloud
-            //Destroy(gameObject);
-            //print("BAG EXPLODED!");
         }
 
         switch (state)
         {
             case BagState.InFlight:
                 //print("In flight");
-                if (Vector2.Distance(transform.position, throwDestination) < 0.1f)
+                if (Vector2.Distance(transform.position, destination) < 0.1f)
                 {
+                    StartCoroutine(Explode());
                     state = BagState.Exploding;
                     break;
                 }
 
-                transform.position = Vector3.Slerp(throwRelOrigin, throwRelDestination, (Time.time - timeThrown) / travelTime);
-                transform.position += (Vector3)throwMidpoint;
+                transform.position = Vector3.Slerp(relativeOrigin, relativeDestination, (Time.time - timeThrown) / travelTime);
+                transform.position += (Vector3)midpoint;
                 break;
             case BagState.Exploding:
-                //print("Exploding");
                 break;
+        }
+    }
+
+    // TODO: rework to explode on a timer no matter what (maybe)
+    private IEnumerator Explode()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject sporeCloud = Instantiate(sporeCloudPrefab, transform.position, Quaternion.identity);
+
+        while (sporeCloud != null)
+            yield return new WaitForEndOfFrame();
+
+        float fadeTime = 2f;
+        float startFadeTime = Time.time;
+        while ((Time.time - startFadeTime) < fadeTime)
+        {
+            Color tmp = spriteRenderer.color;
+            tmp.a = Mathf.Lerp(1f, 0f, (Time.time - startFadeTime) /  fadeTime);
+            spriteRenderer.color = tmp;
+            yield return new WaitForEndOfFrame();
         }
     }
 
     public void Throw(Vector2 origin, Vector2 destination)
     {
-        throwOrigin = origin;
-        throwDestination = destination;
+        this.origin = origin;
+        this.destination = destination;
 
-        throwMidpoint = (throwOrigin + throwDestination) / 2 - arcSize * Vector2.up; // TODO: get more consistent vector for offsetting
-        throwRelOrigin = throwOrigin - throwMidpoint;
-        throwRelDestination = throwDestination - throwMidpoint;
+        midpoint = (this.origin + this.destination) / 2 - arcSize * Vector2.up; // TODO: get more consistent vector for offsetting
+        relativeOrigin = this.origin - midpoint;
+        relativeDestination = this.destination - midpoint;
 
-        float arcLength = Helpers.ArcLength(throwMidpoint, throwOrigin, throwDestination);
+        float arcLength = Helpers.ArcLength(midpoint, this.origin, this.destination);
 
         // speed = distance / time --> time = distance / speed
         travelTime = arcLength / throwSpeed;
