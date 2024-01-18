@@ -20,8 +20,6 @@ public class PlayerCombat : MonoBehaviour
         if (!context.started || heldSporeBag != null)
             return;
 
-        print("Equipped");
-
         heldSporeBag = Instantiate(SporeBagPrefab, transform.position, Quaternion.identity, transform);
     }
 
@@ -30,8 +28,6 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!context.started || heldSporeBag == null)
             return;
-
-        print("Fired");
 
         Vector2 mousePos = Input.mousePosition;
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);

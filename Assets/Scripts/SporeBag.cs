@@ -11,13 +11,18 @@ public class SporeBag : MonoBehaviour
 
     [SerializeField] float cookTime;
     [SerializeField] float throwSpeed;
+    [SerializeField] float arcSize;
 
     internal BagState state = BagState.Held;
 
     private float spawnTime;
     private Vector2 throwOrigin;
     private Vector2 throwDestination;
+    private Vector2 throwRelOrigin;
+    private Vector2 throwRelDestination;
     private Vector2 throwMidpoint;
+    private float timeThrown;
+    private float travelTime;
 
     private void Start()
     {
@@ -42,8 +47,9 @@ public class SporeBag : MonoBehaviour
                     state = BagState.Exploding;
                     break;
                 }
-                // TODO: temp
-                transform.position = throwDestination;
+
+                transform.position = Vector3.Slerp(throwRelOrigin, throwRelDestination, (Time.time - timeThrown) / travelTime);
+                transform.position += (Vector3)throwMidpoint;
                 break;
             case BagState.Exploding:
                 //print("Exploding");
@@ -53,11 +59,19 @@ public class SporeBag : MonoBehaviour
 
     public void Throw(Vector2 origin, Vector2 destination)
     {
-        print("Throwing");
-
         throwOrigin = origin;
         throwDestination = destination;
-        throwMidpoint = (throwOrigin + throwDestination) / 2;
+
+        throwMidpoint = (throwOrigin + throwDestination) / 2 - arcSize * Vector2.up; // TODO: get more consistent vector for offsetting
+        throwRelOrigin = throwOrigin - throwMidpoint;
+        throwRelDestination = throwDestination - throwMidpoint;
+
+        float arcLength = Helpers.ArcLength(throwMidpoint, throwOrigin, throwDestination);
+
+        // speed = distance / time --> time = distance / speed
+        travelTime = arcLength / throwSpeed;
+        print($"travelTime: {travelTime}");
+        timeThrown = Time.time;
 
         state = BagState.InFlight;
     }
