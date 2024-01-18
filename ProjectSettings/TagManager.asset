@@ -51,6 +51,18 @@ TagManager:
   - name: Objects
     uniqueID: 953505055
     locked: 0
+  - name: Structures
+    uniqueID: 303775713
+    locked: 0
+  - name: Enemy
+    uniqueID: 3143524723
+    locked: 0
   - name: Player
     uniqueID: 1261685019
+    locked: 0
+  - name: Player Gadgets
+    uniqueID: 639228157
+    locked: 0
+  - name: Particles
+    uniqueID: 2416530953
     locked: 0

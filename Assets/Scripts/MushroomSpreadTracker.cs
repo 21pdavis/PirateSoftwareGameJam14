@@ -13,13 +13,6 @@ public class MushroomSpreadTracker : MonoBehaviour
     [SerializeField] private Tile grass;
     [SerializeField] private Tile mushroom;
 
-    private Grid grid;
-
-    private void Start()
-    {
-        grid = GetComponent<Grid>();
-    }
-
     public void StartMushroomSpread(EventData data)
     {
         StartCoroutine(FloodFillMushrooms(data.Position));

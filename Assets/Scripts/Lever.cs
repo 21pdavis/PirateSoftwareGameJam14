@@ -13,8 +13,6 @@ public class Lever : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        //Debug.Log(GameObject.FindGameObjectWithTag("Grid").name);
-        //Debug.Log(GameObject.FindGameObjectWithTag("Grid").GetComponent<MushroomSpreadTracker>());
         InteractedWith.AddListener(GameObject.FindGameObjectWithTag("Grid").GetComponent<MushroomSpreadTracker>().StartMushroomSpread);
     }
 }
