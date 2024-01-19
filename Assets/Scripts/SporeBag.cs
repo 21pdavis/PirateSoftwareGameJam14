@@ -50,7 +50,6 @@ public class SporeBag : MonoBehaviour
         switch (state)
         {
             case BagState.InFlight:
-                //print("In flight");
                 if (Vector2.Distance(transform.position, destination) < 0.1f)
                 {
                     StartCoroutine(Explode());
@@ -98,15 +97,12 @@ public class SporeBag : MonoBehaviour
         relativeOrigin = origin - midpoint;
         relativeDestination = destination - midpoint;
 
-        print($"origin distance is {(origin - midpoint).magnitude}");
-        print($"destination distance is {(destination - midpoint).magnitude}");
+        // visualizing the arc
         Debug.DrawLine(origin, midpoint, Color.blue, 2.5f);
         Debug.DrawLine(midpoint, destination, Color.red, 2.5f);
-        float arcLength = Helpers.ArcLength(midpoint, origin, destination);
-
-        print($"arcLength: {arcLength}");
 
         // speed = distance / time --> time = distance / speed
+        float arcLength = Helpers.ArcLength(midpoint, origin, destination);
         travelTime = arcLength / throwSpeed;
         timeThrown = Time.time;
 
