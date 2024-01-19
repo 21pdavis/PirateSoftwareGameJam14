@@ -98,6 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cookTime: 5
-  throwSpeed: 10
-  arcSize: 10
+  throwSpeed: 20
+  arcRadius: 1
   sporeCloudPrefab: {fileID: 3302849480047612088, guid: 7950e60fa0d15024aa8057dd9be71c66, type: 3}

@@ -63,6 +63,6 @@ TagManager:
   - name: Player Gadgets
     uniqueID: 639228157
     locked: 0
-  - name: Particles
+  - name: Effects
     uniqueID: 2416530953
     locked: 0

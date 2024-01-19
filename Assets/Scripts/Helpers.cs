@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class Helpers
 {
+    private static System.Random rand = new();
+
     /// <summary>
     /// Calculates arc length given two points on a circle, assumed (start - center).magnitude == (end - center).magnitude
     /// </summary>
@@ -23,9 +25,11 @@ public static class Helpers
         float radiansBetween = Mathf.Deg2Rad * Vector3.Angle(startOffset, endOffset);
         float radius = (a - center).magnitude;
 
-        Debug.Log($"radiansBetween is {radiansBetween}");
-        Debug.Log($"radius is {radius}");
-
         return radiansBetween * radius;
+    }
+
+    public static T RandFromList<T>(List<T> list)
+    {
+        return list[rand.Next(list.Count)];
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6412162486435701239}
   - component: {fileID: 8322175933556430764}
   - component: {fileID: 698357268326535844}
+  - component: {fileID: 7029711715987355742}
   m_Layer: 0
   m_Name: SporeCloud
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -1878436343
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fee0060a1e4d80f4293ff7f1ebdd5f76, type: 3}
+  m_Sprite: {fileID: -535134392, guid: 07007facf42c32444bee3f7ab2f48173, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,6 +98,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165c987502ad3f6468231bd986e02611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxScaleMultiplier: 2.25
+  cloudScaleSpeed: 5
   lifetime: 5
-  mushroomMap: {fileID: 0}
-  mushroomTile: {fileID: 11400000, guid: 16978de13f9559b4182f3e8fe9b38cbf, type: 2}
+  mushroomTiles:
+  - {fileID: 11400000, guid: 88612b1d3b9d8e84cbba3e26a36fcff0, type: 2}
+  - {fileID: 11400000, guid: a7a4fc609a9b6ef459f164d7ed53826d, type: 2}
+  - {fileID: 11400000, guid: 7d6c163ee6d2cfe4c857c05a06c145c3, type: 2}
+  - {fileID: 11400000, guid: ea35ae5ed006e0944916ebc998d55ec2, type: 2}
+  - {fileID: 11400000, guid: e6a39eb30153d3b4991f920dd484a3bf, type: 2}
+  - {fileID: 11400000, guid: 4715db7dc7b62414486fd30e220cfca2, type: 2}
+  - {fileID: 11400000, guid: 44c6d908d759be94a98e6b725758b764, type: 2}
+--- !u!95 &7029711715987355742
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302849480047612088}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b87350e620fb5304a871a91875d45a2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

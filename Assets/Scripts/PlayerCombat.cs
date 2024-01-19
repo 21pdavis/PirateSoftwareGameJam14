@@ -7,13 +7,6 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject SporeBagPrefab;
 
     private GameObject heldSporeBag = null;
-    private Vector2 mouseToWorldGlobal = Vector2.zero;
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(transform.position, mouseToWorldGlobal);
-    }
 
     public void Equip(InputAction.CallbackContext context)
     {

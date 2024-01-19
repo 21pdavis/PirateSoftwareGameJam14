@@ -13,7 +13,7 @@ public class SporeBag : MonoBehaviour
     [Header("Throw Options")]
     [SerializeField] float cookTime;
     [SerializeField] float throwSpeed;
-    [SerializeField] float arcSize;
+    [SerializeField] float arcRadius;
 
     [Header("References")]
     [SerializeField] GameObject sporeCloudPrefab;
@@ -86,20 +86,28 @@ public class SporeBag : MonoBehaviour
         }
     }
 
-    public void Throw(Vector2 origin, Vector2 destination)
+    public void Throw(Vector2 throwOrigin, Vector2 throwDestination)
     {
-        this.origin = origin;
-        this.destination = destination;
+        Debug.DrawLine(transform.position, throwOrigin, Color.green, 5f);
 
-        midpoint = (this.origin + this.destination) / 2 - arcSize * Vector2.up; // TODO: get more consistent vector for offsetting
-        relativeOrigin = this.origin - midpoint;
-        relativeDestination = this.destination - midpoint;
+        origin = throwOrigin;
+        destination = throwDestination;
 
-        float arcLength = Helpers.ArcLength(midpoint, this.origin, this.destination);
+        float rotationAmount = (throwDestination - throwOrigin).x > 0 ? -90f : 90f;
+        midpoint = (origin + destination) / 2 + arcRadius * (Vector2)(Quaternion.Euler(0f, 0f, rotationAmount) * (destination - origin).normalized);
+        relativeOrigin = origin - midpoint;
+        relativeDestination = destination - midpoint;
+
+        print($"origin distance is {(origin - midpoint).magnitude}");
+        print($"destination distance is {(destination - midpoint).magnitude}");
+        Debug.DrawLine(origin, midpoint, Color.blue, 2.5f);
+        Debug.DrawLine(midpoint, destination, Color.red, 2.5f);
+        float arcLength = Helpers.ArcLength(midpoint, origin, destination);
+
+        print($"arcLength: {arcLength}");
 
         // speed = distance / time --> time = distance / speed
         travelTime = arcLength / throwSpeed;
-        print($"travelTime: {travelTime}");
         timeThrown = Time.time;
 
         state = BagState.InFlight;
