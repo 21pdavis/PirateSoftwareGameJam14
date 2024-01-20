@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 using System.Linq;
 
@@ -10,25 +9,18 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float interactRange;
 
-    //[Header("Tilemaps")]
-    //[SerializeField]
-    //private Tilemap ground;
-
-    //[SerializeField]
-    //private Tilemap mushrooms;
-
+    private Rigidbody2D rb;
     private Vector2 movementDirection = Vector2.zero;
 
-    private void Update()
+    private void Start()
     {
-        transform.position += movementSpeed * Time.deltaTime * (Vector3)movementDirection;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, interactRange);
-    //}
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movementSpeed * Time.deltaTime * movementDirection);
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
