@@ -4,6 +4,26 @@ using UnityEngine;
 
 public static class Helpers
 {
+    // TODO: potentially move this to PlayerAnimation for when we need different characters
+    public static class PlayerAnimStates
+    {
+        // Gun States
+        public const string idleGun = "idle_gun";
+        public const string shootGun = "shoot_gun";
+        public const string walkGun = "walk_gun";
+        public const string shootWalkGun = "shoot_walk_gun";
+        public const string caughtGun = "caught_gun";
+        public const string swapGunToGrenade = "swap_gun_to_grenade";
+
+        // Grenade States
+        public const string idleGrenade = "idle_grenade";
+        public const string shootGrenade = "shoot_grenade";
+        public const string walkGrenade = "walk_grenade";
+        public const string shootWalkGrenade = "shoot_walk_grenade";
+        public const string caughtGrenade = "caught_grenade";
+        public const string swapGrenadeToGun = "swap_grenade_to_gun";
+    }
+
     public static Color[] AllColors = new Color[]
     {
         Color.green,

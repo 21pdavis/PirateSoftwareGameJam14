@@ -2,19 +2,47 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
 
+using static Helpers;
+
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Options")]
     [SerializeField] private float movementSpeed;
-
     [SerializeField] private float interactRange;
 
+    [Header("References")]
+    [SerializeField] private Transform pivot;
+
+    internal Vector2 movementDirection = Vector2.zero;
+    
     private Rigidbody2D rb;
-    private Vector2 movementDirection = Vector2.zero;
+    private Animator animator;
+    private PlayerCombat playerCombat;
+    private PlayerAnimation playerAnimation;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        playerCombat = GetComponent<PlayerCombat>();
+        playerAnimation = GetComponent<PlayerAnimation>();
+    }
+
+    private void Update()
+    {
+        if (!playerCombat.attacking && !playerCombat.swapping)
+        {
+            if (movementDirection == Vector2.zero)
+            {
+                playerAnimation.ChangeAnimState(playerCombat.currentWeapon == PlayerCombat.Weapon.Gun ? PlayerAnimStates.idleGun : PlayerAnimStates.idleGrenade);
+            }
+            else
+            {
+                playerAnimation.ChangeAnimState(playerCombat.currentWeapon == PlayerCombat.Weapon.Gun ? PlayerAnimStates.walkGun : PlayerAnimStates.walkGrenade);
+            }
+        }
+
+        UpdateSpriteDirection();
     }
 
     private void FixedUpdate()
@@ -39,10 +67,22 @@ public class PlayerMovement : MonoBehaviour
         if (!context.started)
             return;
 
-        Collider2D interactable = Physics2D.OverlapCircleAll((Vector2)transform.position, interactRange).FirstOrDefault();
+        Collider2D interactable = Physics2D.OverlapCircleAll((Vector2)pivot.position, interactRange).FirstOrDefault();
         if (interactable != null)
         {
             interactable.GetComponent<IInteractable>().InteractedWith.Invoke(new EventData(interactable.transform.position));
+        }
+    }
+
+    private void UpdateSpriteDirection()
+    {
+        if (movementDirection.x > 0.01f)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else if (movementDirection.x < -0.01f)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 }

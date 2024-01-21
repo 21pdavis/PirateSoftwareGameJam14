@@ -42,9 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Equip",
+                    "name": "Swap Weapon",
                     "type": "Button",
-                    "id": "5e72072a-61a9-4885-ab93-2ecdb4d09303",
+                    "id": "7b98d29f-5443-408a-a3ba-04f78c5d5e83",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -197,12 +197,12 @@
                 },
                 {
                     "name": "",
-                    "id": "de994296-244d-4f58-9e1a-c4b2f091d45e",
-                    "path": "<Mouse>/rightButton",
+                    "id": "4fc9a276-af5b-4ed6-bb8b-dc29132c6488",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Equip",
+                    "action": "Swap Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
