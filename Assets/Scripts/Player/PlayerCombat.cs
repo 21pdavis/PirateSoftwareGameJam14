@@ -67,7 +67,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void SwapWeapon(InputAction.CallbackContext context)
     {
-        // TODO: grey out UI in response to items
+        // TODO: grey out UI while swapping
         if (!context.started || attacking || swapping)
             return;
 
@@ -75,11 +75,17 @@ public class PlayerCombat : MonoBehaviour
 
         if (currentWeapon == Weapon.Gun)
         {
-            playerAnimation.ChangeAnimState(PlayerAnimStates.swapGunToGrenade);
+            playerAnimation.ChangeAnimState(
+                playerMovement.movementDirection == Vector2.zero ?
+                PlayerAnimStates.swapGunToGrenade : PlayerAnimStates.swapGunToGrenadeWalk
+            );
         }
         else // Grenade
         {
-            playerAnimation.ChangeAnimState(PlayerAnimStates.swapGrenadeToGun);
+            playerAnimation.ChangeAnimState(
+                playerMovement.movementDirection == Vector2.zero ?
+                PlayerAnimStates.swapGrenadeToGun : PlayerAnimStates.swapGrenadeToGunWalk
+            );
         }
 
         // set to not be swapping after the animation finishes

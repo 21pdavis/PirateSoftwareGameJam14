@@ -38,7 +38,17 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                playerAnimation.ChangeAnimState(playerCombat.currentWeapon == PlayerCombat.Weapon.Gun ? PlayerAnimStates.walkGun : PlayerAnimStates.walkGrenade);
+                string animName = playerCombat.currentWeapon == PlayerCombat.Weapon.Gun ? PlayerAnimStates.walkGun : PlayerAnimStates.walkGrenade;
+
+                // TODO: revisit, this is gross
+                if (playerCombat.swapping)
+                {
+                    playerAnimation.ChangeAnimState(animName);
+                }
+                else
+                {
+                    playerAnimation.CrossfadeAnimState(animName, 0.25f);
+                }
             }
         }
 

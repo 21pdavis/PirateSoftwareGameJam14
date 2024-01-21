@@ -14,6 +14,7 @@ public static class Helpers
         public const string shootWalkGun = "shoot_walk_gun";
         public const string caughtGun = "caught_gun";
         public const string swapGunToGrenade = "swap_gun_to_grenade";
+        public const string swapGunToGrenadeWalk = "swap_gun_to_grenade_walk";
 
         // Grenade States
         public const string idleGrenade = "idle_grenade";
@@ -22,6 +23,7 @@ public static class Helpers
         public const string shootWalkGrenade = "shoot_walk_grenade";
         public const string caughtGrenade = "caught_grenade";
         public const string swapGrenadeToGun = "swap_grenade_to_gun";
+        public const string swapGrenadeToGunWalk = "swap_grenade_to_gun_walk";
     }
 
     public static Color[] AllColors = new Color[]

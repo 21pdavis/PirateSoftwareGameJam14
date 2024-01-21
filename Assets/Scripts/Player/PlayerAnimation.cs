@@ -24,4 +24,14 @@ public class PlayerAnimation : MonoBehaviour
         animator.Play(animName);
         currentAnim = animName;
     }
+
+    internal void CrossfadeAnimState(string animName, float normalizedTransitionDuration)
+    {
+        if (currentAnim == animName)
+            return;
+
+        animator.CrossFade(animName, normalizedTransitionDuration);
+        // TODO: may need a delay here, but likely not
+        currentAnim = animName;
+    }
 }
