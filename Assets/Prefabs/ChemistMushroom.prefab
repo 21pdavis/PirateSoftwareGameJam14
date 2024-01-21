@@ -604,6 +604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01016faa9abe21469bbcd8797e091a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grenadeSpawnDelay: 0.1
+  grenadeAttackDelay: 0.3
   sporeGrenadePrefab: {fileID: 5086327983177987310, guid: 49035036888e63240b2601dcf826c712, type: 3}
   pivot: {fileID: 0}
 --- !u!114 &832551145163513519
