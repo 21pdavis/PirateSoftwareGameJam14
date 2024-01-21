@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookTime: 5
   throwSpeed: 10
-  arcRadius: 5
+  arcRadius: 0.1
   sporeCloudPrefab: {fileID: 3302849480047612088, guid: 7950e60fa0d15024aa8057dd9be71c66, type: 3}
 --- !u!82 &7119858308135633731
 AudioSource:
