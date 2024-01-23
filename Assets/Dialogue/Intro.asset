@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6812bfdeb167047be8aca1f23fe2af, type: 3}
+  m_Name: Intro
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaker: Captain
+    Text: The war rages on, comrades. We must put an end to the endless tyranny of
+      the flowers.
+  - Speaker: Captain
+    Text: Our lands have been taken over for too long. We must replant our spores
+      and reclaim what was once ours.
+  - Speaker: Mushy
+    Text: YEAH
+  - Speaker: Captain
+    Text: PAY ATTENTION! It should serve as an honor to drive out this invasive species.
+  - Speaker: Captain
+    Text: PAY ATTENTION! It should serve as an honor to drive out this invasive species.
