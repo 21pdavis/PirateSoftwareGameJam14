@@ -9,8 +9,6 @@ public class PlayerCombat : MonoBehaviour
     [Header("Animation Options")]
     [Tooltip("How many puffs per second the gun fires.")]
     [SerializeField] private float gunRateOfFire = 5f;
-    //[Tooltip("The time between pressing attack and the actual instant the grenade spawns from the gun.")]
-    //[SerializeField] private float grenadeSpawnDelay = 0.1f;
     [SerializeField] private Transform grenadeSpawnPoint;
     [Tooltip("The delay between being able to attack again.")]
     [SerializeField] private float grenadeShootDelay = 1f;

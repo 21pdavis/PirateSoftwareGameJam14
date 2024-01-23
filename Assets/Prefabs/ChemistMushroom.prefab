@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &96003496177292313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2036536269005193076}
+  m_Layer: 0
+  m_Name: GrenadeSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2036536269005193076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96003496177292313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.37, y: 2.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4718601937846847757}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942034016244339727
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +699,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2036536269005193076}
   - {fileID: 600866659415809745}
   - {fileID: 300385032577754121}
   - {fileID: 4245485949472024090}
@@ -747,9 +779,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunRateOfFire: 5
-  grenadeSpawnDelay: 0.1
-  grenadeShootDelay: 0.3
+  grenadeSpawnPoint: {fileID: 2036536269005193076}
+  grenadeShootDelay: 1
   startingWeapon: 0
+  swapDelay: 0.5
   sporeGrenadePrefab: {fileID: 5086327983177987310, guid: 49035036888e63240b2601dcf826c712, type: 3}
   pivot: {fileID: 300385032577754121}
 --- !u!114 &832551145163513519
@@ -833,6 +866,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f24e26ed-8852-4c60-9897-24be73a0cf20
     m_ActionName: UI/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7135578089727118195}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: SwapWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7b98d29f-5443-408a-a3ba-04f78c5d5e83
+    m_ActionName: Main/Swap Weapon[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main

@@ -2702,37 +2702,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294633304}
   m_CullTransparentMesh: 1
---- !u!1 &302215619
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 302215620}
-  m_Layer: 0
-  m_Name: GrenadeSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &302215620
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302215619}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.37, y: 2.26, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7164374265944630779}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &360376685
 GameObject:
   m_ObjectHideFlags: 0
@@ -38525,46 +38494,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 7b98d29f-5443-408a-a3ba-04f78c5d5e83
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: Main/Swap Weapon[/Keyboard/q]
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7164374265944630783}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwapWeapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerCombat, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 832551145163513519, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4618361620686495795, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
       propertyPath: m_Name
       value: Mushroom
@@ -38609,24 +38538,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7135578089727118195, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: swapDelay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7135578089727118195, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: grenadeShootDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7135578089727118195, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      propertyPath: grenadeSpawnPoint
-      value: 
-      objectReference: {fileID: 302215620}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4718601937846847757, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 302215620}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
 --- !u!4 &7164374265944630778 stripped
@@ -38634,22 +38548,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 300385032577754121, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
   m_PrefabInstance: {fileID: 7164374265944630777}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7164374265944630779 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4718601937846847757, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-  m_PrefabInstance: {fileID: 7164374265944630777}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7164374265944630783 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7135578089727118195, guid: db831fd679e9dfa40a40ffc5753d6cdd, type: 3}
-  m_PrefabInstance: {fileID: 7164374265944630777}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c01016faa9abe21469bbcd8797e091a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9096800138489968272
 PrefabInstance:
   m_ObjectHideFlags: 0

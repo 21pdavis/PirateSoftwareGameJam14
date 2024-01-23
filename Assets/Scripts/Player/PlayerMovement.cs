@@ -16,14 +16,12 @@ public class PlayerMovement : MonoBehaviour
     internal Vector2 movementDirection = Vector2.zero;
     
     private Rigidbody2D rb;
-    private Animator animator;
     private PlayerCombat playerCombat;
     private PlayerAnimation playerAnimation;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         playerCombat = GetComponent<PlayerCombat>();
         playerAnimation = GetComponent<PlayerAnimation>();
     }
@@ -41,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
                 string animName = playerCombat.currentWeapon == PlayerCombat.Weapon.Gun ? PlayerAnimStates.walkGun : PlayerAnimStates.walkGrenade;
 
                 // TODO: revisit, this is gross
-                if (playerCombat.swapping)
+                if (!playerAnimation.currentAnim.Contains("swap"))
                 {
                     playerAnimation.ChangeAnimState(animName);
                 }
