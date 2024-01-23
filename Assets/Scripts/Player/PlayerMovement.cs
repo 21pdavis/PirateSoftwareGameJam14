@@ -38,14 +38,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 string animName = playerCombat.currentWeapon == PlayerCombat.Weapon.Gun ? PlayerAnimStates.walkGun : PlayerAnimStates.walkGrenade;
 
-                // TODO: revisit, this is gross
-                if (!playerAnimation.currentAnim.Contains("swap"))
+                if (playerAnimation.currentAnim.Contains("swap") || playerAnimation.currentAnim.Contains("shoot"))
                 {
-                    playerAnimation.ChangeAnimState(animName);
+                    playerAnimation.CrossfadeAnimState(animName, 0.25f);
                 }
                 else
                 {
-                    playerAnimation.CrossfadeAnimState(animName, 0.25f);
+                    playerAnimation.ChangeAnimState(animName);
                 }
             }
         }
