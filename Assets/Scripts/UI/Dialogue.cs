@@ -18,17 +18,24 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject dialogueContainer;
     [SerializeField] private RectTransform promptArrow;
 
-    [Header("UI Paramters")]
+    [Header("UI Parameters")]
     [SerializeField] private float maskOpacity = 0.95f;
     [SerializeField] private float promptBounceSpeed = 1.0f; // deg per second iterating for bounce
     [SerializeField] private float promptBounceMultiplier = 1.0f; // amplitude of sine wave
+    [Tooltip("Delay between writing of individual letters during dialogue")]
+    [SerializeField] private float textWriteDelay = 0.1f;
+
+    [Header("References")]
+    [SerializeField] private AudioSource talkingSource;
 
     private List<DialogueSequence.DialogueLine>.Enumerator dialogueIterator;
     private TextMeshProUGUI speakerText;
     private TextMeshProUGUI dialogueText;
+    private DialogueSequence.DialogueLine currLine;
     private float initialPromptYPos;
     private float sinDegCount = 0;
-    // TODO: progressive text animation
+    private bool animatingText = false;
+    private IEnumerator animateTextHandle = null;
 
     private void Start()
     {
@@ -52,11 +59,12 @@ public class Dialogue : MonoBehaviour
     {
         dialogueIterator.MoveNext();
 
-        DialogueSequence.DialogueLine currLine = dialogueIterator.Current;
+        currLine = dialogueIterator.Current;
 
         // update images
         if (currLine.LeftImage)
         {
+            rightImage.color = new Color(1f, 1f, 1f);
             leftImage.sprite = currLine.LeftImage;
         }
         else
@@ -67,6 +75,7 @@ public class Dialogue : MonoBehaviour
 
         if (currLine.RightImage)
         {
+            rightImage.color = new Color(1f, 1f, 1f);
             rightImage.sprite = currLine.RightImage;
         }
         else
@@ -74,9 +83,6 @@ public class Dialogue : MonoBehaviour
             rightImage.sprite = null;
             rightImage.color = new Color(0f, 0f, 0f);
         }
-
-        leftImage.sprite = currLine.LeftImage;
-        rightImage.sprite = currLine.RightImage;
 
         // update masks
         Color tmp;
@@ -113,12 +119,26 @@ public class Dialogue : MonoBehaviour
         }
 
         // update dialogue text
-        dialogueText.text = currLine.Text;
+        animateTextHandle = AnimateText();
+        talkingSource.clip = currLine.TalkingClip;
+        talkingSource.Play();
+        StartCoroutine(animateTextHandle);
     }
 
     private IEnumerator AnimateText()
     {
-        yield return null;
+        animatingText = true;
+        string currText = "";
+        char[] letters = currLine.Text.ToCharArray();
+
+        foreach (char c in letters)
+        {
+            currText += c;
+            dialogueText.text = currText;
+            yield return new WaitForSeconds(textWriteDelay);
+        }
+
+        ResetAudio();
     }
 
     private void AnimatePrompt()
@@ -132,6 +152,23 @@ public class Dialogue : MonoBehaviour
         if (!context.started)
             return;
 
-        AdvanceDialogue();
+        if (animatingText)
+        {
+            StopCoroutine(animateTextHandle);
+            ResetAudio();
+        }
+        else
+        {
+            AdvanceDialogue();
+        }
+    }
+
+    private void ResetAudio()
+    {
+        talkingSource.Stop();
+        talkingSource.clip = null;
+
+        dialogueText.text = currLine.Text;
+        animatingText = false;
     }
 }

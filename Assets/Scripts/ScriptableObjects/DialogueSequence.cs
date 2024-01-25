@@ -20,6 +20,6 @@ public class DialogueSequence : ScriptableObject
         [TextArea(3, 1)]
         public string Text;
 
-        public AudioClip TalkingSound;
+        public AudioClip TalkingClip;
     }
 }

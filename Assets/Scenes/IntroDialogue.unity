@@ -623,6 +623,8 @@ MonoBehaviour:
   maskOpacity: 0.95
   promptBounceSpeed: 1
   promptBounceMultiplier: 1
+  textWriteDelay: 0.05
+  talkingSource: {fileID: 1783156902}
 --- !u!114 &1025340310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,10 +1095,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
