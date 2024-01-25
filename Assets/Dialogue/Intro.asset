@@ -13,15 +13,47 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: 
   dialogueLines:
-  - Speaker: Captain
-    Text: The war rages on, comrades. We must put an end to the endless tyranny of
-      the flowers.
-  - Speaker: Captain
+  - LeftSpeaking: 1
+    Speaker: Fumigator
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 0}
+    Text: Wherever could this resistance meeting be...?
+    TalkingSound: {fileID: 8300000, guid: f455feed97b2d4e4891e55b245f408f0, type: 3}
+  - LeftSpeaking: 0
+    Speaker: ???
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 0}
+    Text: Ho, there! You! With the funny cap! Over here.
+    TalkingSound: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
+  - LeftSpeaking: 1
+    Speaker: Fumigator
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 0}
+    Text: Ah, that must be them.
+    TalkingSound: {fileID: 8300000, guid: f455feed97b2d4e4891e55b245f408f0, type: 3}
+  - LeftSpeaking: 0
+    Speaker: Captain
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: Thank you all for gathering here today, Comrades. The war rages on. We
+      must put an end to the unrelenting tyranny of the flowers.
+    TalkingSound: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
+  - LeftSpeaking: 0
+    Speaker: 
+    LeftImage: {fileID: 0}
+    RightImage: {fileID: 0}
     Text: Our lands have been taken over for too long. We must replant our spores
       and reclaim what was once ours.
-  - Speaker: Mushy
+    TalkingSound: {fileID: 0}
+  - LeftSpeaking: 0
+    Speaker: 
+    LeftImage: {fileID: 0}
+    RightImage: {fileID: 0}
     Text: YEAH
-  - Speaker: Captain
+    TalkingSound: {fileID: 0}
+  - LeftSpeaking: 0
+    Speaker: 
+    LeftImage: {fileID: 0}
+    RightImage: {fileID: 0}
     Text: PAY ATTENTION! It should serve as an honor to drive out this invasive species.
-  - Speaker: Captain
-    Text: PAY ATTENTION! It should serve as an honor to drive out this invasive species.
+    TalkingSound: {fileID: 0}

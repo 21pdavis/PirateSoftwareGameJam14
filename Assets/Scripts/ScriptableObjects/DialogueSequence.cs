@@ -14,11 +14,12 @@ public class DialogueSequence : ScriptableObject
 
         [TextArea(1, 1)]
         public string Speaker;
+        public Sprite LeftImage;
+        public Sprite RightImage;
 
         [TextArea(3, 1)]
         public string Text;
 
-        public Sprite LeftImage;
-        public Sprite RightImage;
+        public AudioClip TalkingSound;
     }
 }

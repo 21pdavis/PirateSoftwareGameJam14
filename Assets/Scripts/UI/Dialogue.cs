@@ -11,27 +11,30 @@ public class Dialogue : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private Image leftImage;
+    [SerializeField] private Image leftMask;
+    [SerializeField] private GameObject speakerContainer;
     [SerializeField] private Image rightImage;
-    [SerializeField] private GameObject leftSpeakerContainer;
-    [SerializeField] private GameObject rightSpeakerContainer;
+    [SerializeField] private Image rightMask;
     [SerializeField] private GameObject dialogueContainer;
     [SerializeField] private RectTransform promptArrow;
+
+    [Header("UI Paramters")]
+    [SerializeField] private float maskOpacity = 0.95f;
     [SerializeField] private float promptBounceSpeed = 1.0f; // deg per second iterating for bounce
     [SerializeField] private float promptBounceMultiplier = 1.0f; // amplitude of sine wave
 
     private List<DialogueSequence.DialogueLine>.Enumerator dialogueIterator;
-    private TextMeshProUGUI leftSpeakerText;
-    private TextMeshProUGUI rightSpeakerText;
+    private TextMeshProUGUI speakerText;
     private TextMeshProUGUI dialogueText;
     private float initialPromptYPos;
     private float sinDegCount = 0;
+    // TODO: progressive text animation
 
     private void Start()
     {
         dialogueIterator = sequence.dialogueLines.GetEnumerator();
 
-        leftSpeakerText = leftSpeakerContainer.transform.Find("Text").GetComponent<TextMeshProUGUI>();
-        rightSpeakerText = rightSpeakerContainer.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        speakerText = speakerContainer.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         dialogueText = dialogueContainer.transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
         initialPromptYPos = promptArrow.localPosition.y;
@@ -52,27 +55,70 @@ public class Dialogue : MonoBehaviour
         DialogueSequence.DialogueLine currLine = dialogueIterator.Current;
 
         // update images
-        leftImage.sprite = currLine.LeftImage;
-        rightImage.sprite = currLine.RightImage;
-
-        // update speaker
-        if (currLine.LeftSpeaking)
+        if (currLine.LeftImage)
         {
-            leftSpeakerContainer.SetActive(true);
-            rightSpeakerContainer.SetActive(false);
-
-            leftSpeakerText.text = currLine.Speaker;
+            leftImage.sprite = currLine.LeftImage;
         }
         else
         {
-            leftSpeakerContainer.SetActive(false);
-            rightSpeakerContainer.SetActive(true);
+            leftImage.sprite = null;
+            leftImage.color = new Color(0f, 0f, 0f);
+        }
 
-            rightSpeakerText.text = currLine.Speaker;
+        if (currLine.RightImage)
+        {
+            rightImage.sprite = currLine.RightImage;
+        }
+        else
+        {
+            rightImage.sprite = null;
+            rightImage.color = new Color(0f, 0f, 0f);
+        }
+
+        leftImage.sprite = currLine.LeftImage;
+        rightImage.sprite = currLine.RightImage;
+
+        // update masks
+        Color tmp;
+        if (currLine.LeftSpeaking)
+        {
+            tmp = rightMask.color;
+            tmp.a = maskOpacity;
+            rightMask.color = tmp;
+
+            tmp = leftMask.color;
+            tmp.a = 0f;
+            leftMask.color = tmp;
+        }
+        else
+        {
+            tmp = leftMask.color;
+            tmp.a = maskOpacity;
+            leftMask.color = tmp;
+
+            tmp = rightMask.color;
+            tmp.a = 0f;
+            rightMask.color = tmp;
+        }
+
+        // update speaker
+        if (!currLine.Speaker.Equals(""))
+        {
+            speakerContainer.SetActive(true);
+            speakerText.text = currLine.Speaker;
+        }
+        else
+        {
+            speakerContainer.SetActive(false);
         }
 
         // update dialogue text
         dialogueText.text = currLine.Text;
+    }
+
+    private IEnumerator AnimateText()
+    {
+        yield return null;
     }
 
     private void AnimatePrompt()
