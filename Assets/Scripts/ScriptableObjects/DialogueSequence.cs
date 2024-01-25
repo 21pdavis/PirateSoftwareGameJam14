@@ -10,6 +10,8 @@ public class DialogueSequence : ScriptableObject
     [Serializable]
     public struct DialogueLine
     {
+        public bool LeftSpeaking;
+
         [TextArea(1, 1)]
         public string Speaker;
 

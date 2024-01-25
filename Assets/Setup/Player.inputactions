@@ -209,11 +209,11 @@
             ]
         },
         {
-            "name": "UI",
+            "name": "Dialogue",
             "id": "a36cbe3c-e9ad-428e-924b-0f681cd6bece",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Continue",
                     "type": "Button",
                     "id": "f24e26ed-8852-4c60-9897-24be73a0cf20",
                     "expectedControlType": "Button",
@@ -226,11 +226,11 @@
                 {
                     "name": "",
                     "id": "67ea7b82-f21f-4129-897d-82afd8b61fdc",
-                    "path": "",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
