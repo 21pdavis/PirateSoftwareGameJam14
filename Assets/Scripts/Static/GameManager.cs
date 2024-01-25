@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameStage Stage = GameStage.Menu;
+    public GameState Stage = GameState.Menu;
 
-    public enum GameStage
+    public enum GameState
     {
         Menu,
         IntroDialogue,
@@ -21,5 +21,21 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void TransitionTo(GameState stage)
+    {
+        switch (stage)
+        {
+            case GameState.Menu:
+
+                break;
+            case GameState.IntroDialogue:
+
+                break;
+            case GameState.LevelOne:
+
+                break;
+        }
     }
 }

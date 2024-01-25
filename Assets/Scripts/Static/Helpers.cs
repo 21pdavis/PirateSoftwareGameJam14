@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Helpers
 {
-    // TODO: potentially move this to PlayerAnimation for when we need different characters
+    // TODO: potentially move this to PlayerAnimation for when we need different characters (or change it to ChemistMushroomAnimStates)
     public static class PlayerAnimStates
     {
         // Gun States

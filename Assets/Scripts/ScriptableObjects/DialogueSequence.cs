@@ -16,10 +16,7 @@ public class DialogueSequence : ScriptableObject
         [TextArea(3, 1)]
         public string Text;
 
-        public DialogueLine(string speaker, string text)
-        {
-            Speaker = speaker;
-            Text = text;
-        }
+        public Sprite LeftImage;
+        public Sprite RightImage;
     }
 }
