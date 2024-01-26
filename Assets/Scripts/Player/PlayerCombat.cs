@@ -92,17 +92,22 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator SpawnAndShootGunSporeCloud()
     {
+        playerAnimation.ChangeAnimState(
+            playerMovement.movementDirection == Vector2.zero ?
+            PlayerAnimStates.shootGun : PlayerAnimStates.shootWalkGun
+        );
+
         while (Input.GetMouseButton(0))
         {
-            print("Shooting!");
-
-            playerAnimation.ChangeAnimState(
-                playerMovement.movementDirection == Vector2.zero ?
-                PlayerAnimStates.shootGun : PlayerAnimStates.shootWalkGun
-            );
-
-            yield return new WaitForSeconds(1 / gunRateOfFire);
+            float animStartTime = Time.time;
+            while (Time.time <= animStartTime + playerAnimation.animator.GetCurrentAnimatorStateInfo(0).length)
+            {
+                // spore clouds actually spawned using animation events
+                yield return new WaitForEndOfFrame();
+            }
+            yield return new WaitForEndOfFrame();
         }
+        
         attacking = false;
     }
 
