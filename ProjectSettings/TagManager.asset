@@ -52,6 +52,9 @@ TagManager:
   - name: Objects
     uniqueID: 953505055
     locked: 0
+  - name: Water
+    uniqueID: 4190630781
+    locked: 0
   - name: Structures
     uniqueID: 303775713
     locked: 0
