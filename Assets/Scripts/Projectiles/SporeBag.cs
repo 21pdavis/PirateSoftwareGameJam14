@@ -62,21 +62,14 @@ public class SporeBag : MonoBehaviour
     private IEnumerator Explode()
     {
         audioSource.Play();
+        Instantiate(sporeCloudPrefab, transform.position, Quaternion.identity);
 
-        GameObject sporeCloud = Instantiate(sporeCloudPrefab, transform.position, Quaternion.identity);
+        Color tmp = spriteRenderer.color;
+        tmp.a = 0f;
+        spriteRenderer.color = tmp;
 
-        while (sporeCloud != null)
-            yield return new WaitForEndOfFrame();
-
-        float fadeTime = 2f;
-        float startFadeTime = Time.time;
-        while ((Time.time - startFadeTime) < fadeTime)
-        {
-            Color tmp = spriteRenderer.color;
-            tmp.a = Mathf.Lerp(1f, 0f, (Time.time - startFadeTime) /  fadeTime);
-            spriteRenderer.color = tmp;
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 
     public void Throw(Vector2 throwOrigin, Vector2 throwDestination)

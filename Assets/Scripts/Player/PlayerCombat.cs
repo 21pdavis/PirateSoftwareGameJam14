@@ -29,6 +29,7 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerAnimation playerAnimation;
     private PlayerMovement playerMovement;
+    private Vector3 grenadeShootPoint;
 
     // Do not need an enum to track this, but I think it will help code readability to have this instead of a bool (at least for me)
     public enum Weapon
@@ -63,6 +64,10 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+            grenadeShootPoint = mouseWorldPosition;
+
             playerAnimation.ChangeAnimState(
                 playerMovement.movementDirection == Vector2.zero ?
                 PlayerAnimStates.shootGrenade : PlayerAnimStates.shootWalkGrenade
@@ -145,11 +150,11 @@ public class PlayerCombat : MonoBehaviour
         grenadeShootSource.pitch += addition;
         grenadeShootSource.Play();
 
-        Vector2 mousePos = Input.mousePosition;
-        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        //Vector2 mousePos = Input.mousePosition;
+        //Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
 
         GameObject sporeGrenade = Instantiate(sporeGrenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
-        sporeGrenade.GetComponent<SporeBag>().Throw(grenadeSpawnPoint.position, mouseWorldPosition);
+        sporeGrenade.GetComponent<SporeBag>().Throw(grenadeSpawnPoint.position, grenadeShootPoint);
     }
 
     private void SetNotAttacking()
