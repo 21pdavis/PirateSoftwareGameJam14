@@ -13,48 +13,76 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: 
   dialogueLines:
-  - LeftSpeaking: 1
+  - Speaking: 0
     Speaker: Fumigator
     LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
     RightImage: {fileID: 0}
     Text: Wherever could this resistance meeting be...?
     TalkingClip: {fileID: 8300000, guid: f455feed97b2d4e4891e55b245f408f0, type: 3}
-  - LeftSpeaking: 0
+  - Speaking: 1
     Speaker: Boy
     LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
     RightImage: {fileID: 21300000, guid: a4223d89f5a66eb45b7632ef5358a09d, type: 3}
     Text: Hey you! You must be the one Cap was talking about! Get over here! He's
       about to start his speech!
     TalkingClip: {fileID: 8300000, guid: 2d47c5f6675219c4b9b9f3e4601ec159, type: 3}
-  - LeftSpeaking: 1
+  - Speaking: 0
     Speaker: Fumigator
     LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
     RightImage: {fileID: 0}
     Text: Ah, that must be them.
     TalkingClip: {fileID: 8300000, guid: f455feed97b2d4e4891e55b245f408f0, type: 3}
-  - LeftSpeaking: 0
-    Speaker: Captain
+  - Speaking: 1
+    Speaker: Cap'tain
     LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
     RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
     Text: The war rages on, comrades. We must put an end to the unrelenting tyranny
-      of the flowers.
+      of the Red Rose Regime!
     TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
-  - LeftSpeaking: 0
-    Speaker: 
-    LeftImage: {fileID: 0}
-    RightImage: {fileID: 0}
-    Text: Our lands have been taken over for too long. We must replant our spores
-      and reclaim what was once ours.
-    TalkingClip: {fileID: 0}
-  - LeftSpeaking: 0
-    Speaker: 
-    LeftImage: {fileID: 0}
-    RightImage: {fileID: 0}
-    Text: YEAH
-    TalkingClip: {fileID: 0}
-  - LeftSpeaking: 0
-    Speaker: 
-    LeftImage: {fileID: 0}
-    RightImage: {fileID: 0}
-    Text: PAY ATTENTION! It should serve as an honor to drive out this invasive species.
-    TalkingClip: {fileID: 0}
+  - Speaking: 1
+    Speaker: Cap'tain
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: Our lands have been taken over by the flowers for too long. We must spawn
+      new spores and reclaim what was once ours!
+    TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
+  - Speaking: 2
+    Speaker: Crowd
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: 'YEAH!
+
+      GET ''EM!
+
+      STUPID FLOWERS!
+
+      THEY ACTUALLY SMELL
+      QUITE LOVELY!'
+    TalkingClip: {fileID: 8300000, guid: 2d47c5f6675219c4b9b9f3e4601ec159, type: 3}
+  - Speaking: 1
+    Speaker: Cap'tain
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: PAY ATTENTION! It should serve as an honor to drive out this invasive species
+      - and become the invasive species once again AHAHAHAHA.
+    TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
+  - Speaking: 1
+    Speaker: Cap'tain
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: Ahem, anyway, now, as you all know, we have a special operative for the
+      upcoming mission, as we have a soldier to rescue.
+    TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
+  - Speaking: 0
+    Speaker: Fumigator
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: Oh, ah, yes, um, hi everyone, I'm the fumigator. I'll be joining you on-
+    TalkingClip: {fileID: 8300000, guid: f455feed97b2d4e4891e55b245f408f0, type: 3}
+  - Speaking: 1
+    Speaker: Cap'tain
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: WHO YOU ARE IS UNIMPORTANT. You will find everything you need in this pamphlet.
+      Good luck, mushroom! And may the spores be with you.
+    TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}

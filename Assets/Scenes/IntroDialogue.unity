@@ -394,6 +394,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &653483068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 653483070}
+  - component: {fileID: 653483069}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: GameManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &653483069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653483068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed830a536be51a419b1ab49656e890a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stage: 1
+--- !u!4 &653483070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653483068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0610435, y: -0.49600303, z: -0.72710675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &733522950
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequence: {fileID: 11400000, guid: ea3b744557f041d49a7e0d8b0ed5963b, type: 2}
+  stateAfterDialogue: 2
   leftImage: {fileID: 878466607}
   leftMask: {fileID: 750389506}
   speakerContainer: {fileID: 2104476104}
@@ -750,7 +796,7 @@ MonoBehaviour:
   promptArrow: {fileID: 2016618202}
   maskOpacity: 0.95
   promptBounceSpeed: 4
-  promptBounceMultiplier: 300
+  promptBounceMultiplier: 5
   textWriteDelay: 0.05
   talkingSource: {fileID: 1783156902}
 --- !u!114 &1025340310
@@ -1697,3 +1743,4 @@ SceneRoots:
   - {fileID: 2026431953}
   - {fileID: 1025340308}
   - {fileID: 408209402}
+  - {fileID: 653483070}

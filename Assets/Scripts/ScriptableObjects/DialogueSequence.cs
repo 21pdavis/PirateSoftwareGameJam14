@@ -7,10 +7,17 @@ public class DialogueSequence : ScriptableObject
 {
     public List<DialogueLine> dialogueLines = new();
 
+    public enum SpeakMode
+    {
+        Left,
+        Right,
+        Neither
+    }
+
     [Serializable]
     public struct DialogueLine
     {
-        public bool LeftSpeaking;
+        public SpeakMode Speaking;
 
         [TextArea(1, 1)]
         public string Speaker;

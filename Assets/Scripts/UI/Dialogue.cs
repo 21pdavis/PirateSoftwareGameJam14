@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class Dialogue : MonoBehaviour
 {
     [SerializeField] private DialogueSequence sequence;
+    [Tooltip("The state that should be transitioned to after conclusion of dialogue.")]
+    [SerializeField] private GameManager.GameState stateAfterDialogue;
 
     [Header("UI Elements")]
     [SerializeField] private Image leftImage;
@@ -57,7 +60,13 @@ public class Dialogue : MonoBehaviour
 
     private void AdvanceDialogue()
     {
-        dialogueIterator.MoveNext();
+        bool moved = dialogueIterator.MoveNext();
+
+        if (!moved)
+        {
+            GameManager.Instance.TransitionTo(stateAfterDialogue);
+            return;
+        }
 
         currLine = dialogueIterator.Current;
 
@@ -85,8 +94,18 @@ public class Dialogue : MonoBehaviour
         }
 
         // update masks
+        // TODO: Could clean this up and put some of it into functions, but no time atm
         Color tmp;
-        if (currLine.LeftSpeaking)
+        if (currLine.Speaking == DialogueSequence.SpeakMode.Neither)
+        {
+            Color leftTmp = leftMask.color;
+            tmp = rightMask.color;
+            tmp.a = maskOpacity;
+            leftTmp.a = maskOpacity;
+            leftMask.color = leftTmp;
+            rightMask.color = tmp;
+        }
+        else if (currLine.Speaking == DialogueSequence.SpeakMode.Left)
         {
             tmp = rightMask.color;
             tmp.a = maskOpacity;
@@ -96,7 +115,7 @@ public class Dialogue : MonoBehaviour
             tmp.a = 0f;
             leftMask.color = tmp;
         }
-        else
+        else if (currLine.Speaking == DialogueSequence.SpeakMode.Right)
         {
             tmp = leftMask.color;
             tmp.a = maskOpacity;
@@ -144,7 +163,7 @@ public class Dialogue : MonoBehaviour
     private void AnimatePrompt()
     {
         sinDegCount += (Time.deltaTime * promptBounceSpeed) % 360;
-        promptArrow.localPosition = new Vector3(promptArrow.localPosition.x, initialPromptYPos + Time.deltaTime * promptBounceMultiplier * Mathf.Sin(sinDegCount), 0f);
+        promptArrow.localPosition = new Vector3(promptArrow.localPosition.x, initialPromptYPos + promptBounceMultiplier * Mathf.Sin(sinDegCount), 0f);
     }
 
     public void Continue(InputAction.CallbackContext context)

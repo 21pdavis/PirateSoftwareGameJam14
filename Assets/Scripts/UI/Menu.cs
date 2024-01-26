@@ -16,7 +16,7 @@ public class Menu : MonoBehaviour
 
     private void NewGame()
     {
-        SceneManager.LoadScene("IntroDialogue");
+        GameManager.Instance.TransitionTo(GameManager.GameState.IntroDialogue);
     }
 
     private void Exit()
