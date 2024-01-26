@@ -4,31 +4,45 @@ using UnityEngine.Tilemaps;
 
 public class SporeCloud : MonoBehaviour
 {
-    [SerializeField] float maxScaleMultiplier;
-    [SerializeField] float cloudScaleSpeed;
-    [SerializeField] float lifetime;
+    public float maxScaleMultiplier = 2.25f;
+    public float cloudScaleSpeed = 5f;
+    public float lifetime = 5f;
+    public Vector3 initialVelocity = Vector3.zero;
+    public Vector3 velocityDecay = Vector3.zero;
 
     [Header("References")]
-    [SerializeField] List<TileBase> mushroomTiles;
+    [SerializeField] private List<TileBase> mushroomTiles;
 
     private SpriteRenderer spriteRenderer;
     private Tilemap mushroomMap;
     private Vector3 initialScale;
     private Vector3 maxScale;
+    private Vector3 velocity;
     private float startTime;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        // TODO: maybe need better solution but this works
         mushroomMap = GameObject.Find("Mushrooms").GetComponent<Tilemap>();
         initialScale = transform.localScale;
         maxScale = maxScaleMultiplier * initialScale;
         startTime = Time.time;
+        velocity = initialVelocity;
     }
 
     private void Update()
     {
+        // update cloud position
+        transform.position += Time.deltaTime * velocity;
+        Vector3 timeScaledDecay = Time.deltaTime * velocityDecay;
+
+        velocity = new Vector3(
+            initialVelocity.x > 0 ? Mathf.Max(0, velocity.x - timeScaledDecay.x) : Mathf.Min(0, velocity.x - timeScaledDecay.x),
+            initialVelocity.x > 0 ? Mathf.Max(0, velocity.y - timeScaledDecay.y) : Mathf.Min(0, velocity.y - timeScaledDecay.y),
+            initialVelocity.x > 0 ? Mathf.Max(0, velocity.z - timeScaledDecay.z) : Mathf.Min(0, velocity.z - timeScaledDecay.z)
+        );
+
+        // update cloud scale
         transform.localScale = Vector3.Lerp(transform.localScale, maxScale, cloudScaleSpeed * Time.deltaTime);
 
         SpreadMushroomsInBounds();

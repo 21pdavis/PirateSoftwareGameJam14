@@ -462,7 +462,7 @@ TextureImporter:
       name: fences_40
       rect:
         serializedVersion: 2
-        x: 267
+        x: 264
         y: 120
         width: 64
         height: 64
@@ -488,7 +488,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

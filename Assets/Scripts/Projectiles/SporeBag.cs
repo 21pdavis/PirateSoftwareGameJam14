@@ -11,9 +11,8 @@ public class SporeBag : MonoBehaviour
     }
 
     [Header("Throw Options")]
-    [SerializeField] float cookTime;
-    [SerializeField] float throwSpeed;
-    [SerializeField] float arcRadius;
+    [SerializeField] private float throwSpeed;
+    [SerializeField] private float arcRadius;
 
     [Header("References")]
     [SerializeField] GameObject sporeCloudPrefab;
@@ -60,10 +59,10 @@ public class SporeBag : MonoBehaviour
         }
     }
 
-    // TODO: rework to explode on a timer no matter what (maybe)
     private IEnumerator Explode()
     {
-        yield return new WaitForSeconds(0.5f);
+        audioSource.Play();
+
         GameObject sporeCloud = Instantiate(sporeCloudPrefab, transform.position, Quaternion.identity);
 
         while (sporeCloud != null)
@@ -83,9 +82,6 @@ public class SporeBag : MonoBehaviour
     public void Throw(Vector2 throwOrigin, Vector2 throwDestination)
     {
         Debug.DrawLine(transform.position, throwOrigin, Color.green, 5f);
-
-        // TODO: for when the audio comes back
-        //audioSource.Play();
 
         origin = throwOrigin;
         destination = throwDestination;
