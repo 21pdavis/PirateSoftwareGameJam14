@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCombat = GetComponent<PlayerCombat>();
         playerAnimation = GetComponent<PlayerAnimation>();
+
+        GameObject.Find("Canvas").GetComponent<Popup>().DisplayPopup();
     }
 
     private void Update()

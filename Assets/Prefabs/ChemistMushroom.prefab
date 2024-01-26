@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 7135578089727118195}
   - component: {fileID: 832551145163513519}
   - component: {fileID: 6256513429624431914}
-  - component: {fileID: 4384181526577035597}
+  - component: {fileID: 992804725281137426}
   m_Layer: 0
   m_Name: ChemistMushroom
   m_TagString: Untagged
@@ -778,7 +778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01016faa9abe21469bbcd8797e091a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunRateOfFire: 5
   grenadeSpawnPoint: {fileID: 2036536269005193076}
   grenadeShootDelay: 1
   startingWeapon: 0
@@ -882,6 +881,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7b98d29f-5443-408a-a3ba-04f78c5d5e83
     m_ActionName: Main/Swap Weapon[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Popup, Assembly-CSharp
+        m_MethodName: ClosePopup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d9dccf0c-d6ea-4716-8d30-d8ccbdd19245
+    m_ActionName: Popup/Close Popup[/Mouse/leftButton,/Mouse/rightButton,/Mouse/middleButton,/Keyboard/space,/Keyboard/enter,/Keyboard/numpadEnter,/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main
@@ -914,8 +929,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &4384181526577035597
-CapsuleCollider2D:
+--- !u!58 &992804725281137426
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -946,9 +961,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.053509474, y: 1.1165645}
-  m_Size: {x: 0.8632035, y: 1.3832045}
-  m_Direction: 0
+  m_Offset: {x: 0.12, y: 0.9}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &5305017311032393874
 GameObject:
   m_ObjectHideFlags: 0

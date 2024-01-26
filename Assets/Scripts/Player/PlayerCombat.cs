@@ -7,8 +7,6 @@ using static Helpers;
 public class PlayerCombat : MonoBehaviour
 {
     [Header("Animation Options")]
-    [Tooltip("How many puffs per second the gun fires.")]
-    [SerializeField] private float gunRateOfFire = 5f;
     [SerializeField] private Transform grenadeSpawnPoint;
     [Tooltip("The delay between being able to attack again.")]
     [SerializeField] private float grenadeShootDelay = 1f;
