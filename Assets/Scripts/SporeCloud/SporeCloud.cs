@@ -11,9 +11,11 @@ public class SporeCloud : MonoBehaviour
     public Vector3 velocityDecay = Vector3.zero;
 
     [Header("References")]
+    [SerializeField] private List<TileBase> grassTiles;
     [SerializeField] private List<TileBase> mushroomTiles;
 
     private SpriteRenderer spriteRenderer;
+    private Tilemap groundMap;
     private Tilemap mushroomMap;
     private Vector3 initialScale;
     private Vector3 maxScale;
@@ -23,6 +25,7 @@ public class SporeCloud : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        groundMap = GameObject.Find("Ground").GetComponent<Tilemap>();
         mushroomMap = GameObject.Find("Mushrooms").GetComponent<Tilemap>();
         initialScale = transform.localScale;
         maxScale = maxScaleMultiplier * initialScale;
@@ -69,7 +72,7 @@ public class SporeCloud : MonoBehaviour
 
         do {
             TileBase mushroom = Helpers.RandFromList(mushroomTiles);
-            if (!mushroomTiles.Contains(mushroomMap.GetTile(positions.Current)))
+            if (!mushroomTiles.Contains(mushroomMap.GetTile(positions.Current)) && grassTiles.Contains(groundMap.GetTile(positions.Current)))
             {
                mushroomMap.SetTile(positions.Current, mushroom);
             }

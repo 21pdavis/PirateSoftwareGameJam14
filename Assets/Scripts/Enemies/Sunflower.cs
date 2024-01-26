@@ -33,6 +33,8 @@ public class Sunflower : MonoBehaviour
     private int currentPathWaypoint = 1;
     private int patrolPointIndex = 0;
     private bool ascending = true;
+    //private bool canCheck = false;
+    private Path lastPath = null;
 
     private void Start()
     {
@@ -107,16 +109,20 @@ public class Sunflower : MonoBehaviour
         if (
             currentPathWaypoint >= path.vectorPath.Count
             && patrolPoints.Count >= 2
+            && lastPath != path
         )
         {
+            lastPath = path;
             patrolPointIndex += ascending ? 1 : -1;
             if (patrolPointIndex < 0)
             {
                 patrolPointIndex += 2;
+                ascending = true;
             }
             else if (patrolPointIndex >= patrolPoints.Count)
             {
                 patrolPointIndex -= 2;
+                ascending = false;
             }
         }
         else if (currentPathWaypoint < path.vectorPath.Count)

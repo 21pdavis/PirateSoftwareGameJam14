@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1878436343
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: -535134392, guid: 07007facf42c32444bee3f7ab2f48173, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,6 +101,13 @@ MonoBehaviour:
   maxScaleMultiplier: 2.25
   cloudScaleSpeed: 5
   lifetime: 5
+  initialVelocity: {x: 0, y: 0, z: 0}
+  velocityDecay: {x: 0, y: 0, z: 0}
+  grassTiles:
+  - {fileID: 11400000, guid: 69df360c620423243abb53e025f178be, type: 2}
+  - {fileID: 11400000, guid: 6e4e9730c6b8d704b99d9f6227206789, type: 2}
+  - {fileID: 11400000, guid: 6bf8a72801f97384cbe2e213d3714508, type: 2}
+  - {fileID: 11400000, guid: 1a315369a31ab184b880efa43a9b0c7a, type: 2}
   mushroomTiles:
   - {fileID: 11400000, guid: 88612b1d3b9d8e84cbba3e26a36fcff0, type: 2}
   - {fileID: 11400000, guid: a7a4fc609a9b6ef459f164d7ed53826d, type: 2}
