@@ -225,17 +225,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "67ea7b82-f21f-4129-897d-82afd8b61fdc",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Continue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "fb5c8b57-e0d8-41ac-a07e-db76545784fd",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -260,6 +249,50 @@
                     "name": "",
                     "id": "1a71a080-4bcd-4cb4-ab15-8b8a87d48d01",
                     "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35eb1aa9-1fc2-44b8-a1a9-d664ed30ca6d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e29ccea-929e-464d-9a38-cf473e9f321c",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb9aea2c-95ca-4014-9010-f30a908a4b8e",
+                    "path": "<Keyboard>/numpadEnter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "152b2ed7-8bdb-4e52-9301-165c86c49e65",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
