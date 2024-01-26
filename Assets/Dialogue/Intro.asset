@@ -70,8 +70,8 @@ MonoBehaviour:
     Speaker: Cap'tain
     LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
     RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
-    Text: Ahem, anyway, now, as you all know, we have a special operative for the
-      upcoming mission, as we have a soldier to rescue.
+    Text: Ahem, anyway, as you all know, we have a special operative for the upcoming
+      rescue mission.
     TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
   - Speaking: 0
     Speaker: Fumigator
@@ -83,6 +83,6 @@ MonoBehaviour:
     Speaker: Cap'tain
     LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
     RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
-    Text: WHO YOU ARE IS UNIMPORTANT. You will find everything you need in this pamphlet.
+    Text: WHO YOU ARE IS UNIMPORTANT! You will find everything you need in this pamphlet.
       Good luck, mushroom! And may the spores be with you.
     TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}
