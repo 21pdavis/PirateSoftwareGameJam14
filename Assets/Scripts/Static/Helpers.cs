@@ -26,6 +26,13 @@ public static class Helpers
         public const string swapGrenadeToGunWalk = "swap_grenade_to_gun_walk";
     }
 
+    public static class SunflowerAnimStates
+    {
+        public const string idle = "idle";
+        public const string walk = "walk";
+        public const string shoot = "shoot";
+    }
+
     public static Color[] AllColors = new Color[]
     {
         Color.green,

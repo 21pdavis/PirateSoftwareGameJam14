@@ -45,12 +45,6 @@ public class PlayerCombat : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(pivot.position, 2f);
-    }
-
     public void Fire(InputAction.CallbackContext context)
     {
         if (!context.started || attacking || swapping)
@@ -136,8 +130,9 @@ public class PlayerCombat : MonoBehaviour
         SporeCloud cloud = cloudObj.GetComponent<SporeCloud>();
 
         //Vector3 shootDirection = (cloud.transform.position - pivot.position).normalized;
-        cloud.maxScaleMultiplier = 1.5f;
+        cloud.maxScaleMultiplier = 0.9f;
         cloud.cloudScaleSpeed = 1f;
+        cloud.lifetime = 2.5f;
         cloud.initialVelocity = gunCloudSpeed * new Vector3(transform.localScale.x, RandInRange(1, 5) / 10.0f, 0f).normalized;
         cloud.velocityDecay = -gunCloudDecay * new Vector3(transform.localScale.x, RandInRange(1, 5) / 10.0f, 0f).normalized;
     }

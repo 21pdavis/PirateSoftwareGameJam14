@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform pivot;
+    [SerializeField] private AudioSource walkingSource;
 
     internal Vector2 movementDirection = Vector2.zero;
     
@@ -64,10 +65,16 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             movementDirection = context.ReadValue<Vector2>();
+
+            if (!walkingSource.isPlaying)
+            {
+                walkingSource.Play();
+            }
         }
         else if (context.canceled)
         {
             movementDirection = Vector2.zero;
+            walkingSource.Stop();
         }
     }
 
