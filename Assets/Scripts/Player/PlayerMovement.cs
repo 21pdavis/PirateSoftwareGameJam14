@@ -1,19 +1,21 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Linq;
 
 using static Helpers;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Options")]
-    [SerializeField] private float movementSpeed;
+    public float movementSpeed;
     [SerializeField] private float interactRange;
 
     [Header("References")]
-    [SerializeField] private Transform pivot;
+    public Transform pivot;
     [SerializeField] private AudioSource walkingSource;
 
+    internal bool slowed = false;
     internal Vector2 movementDirection = Vector2.zero;
     
     private Rigidbody2D rb;
@@ -58,6 +60,23 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movementSpeed * Time.deltaTime * movementDirection);
+    }
+
+    public void SlowPlayer()
+    {
+        if (slowed)
+            return;
+
+        slowed = true;
+        movementSpeed /= 2;
+        StartCoroutine(RestoreMoveSpeed());
+    }
+
+    private IEnumerator RestoreMoveSpeed()
+    {
+        yield return new WaitForSeconds(2f);
+        slowed = false;
+        movementSpeed *= 2;
     }
 
     public void Move(InputAction.CallbackContext context)

@@ -75,7 +75,7 @@ public static class Helpers
         return list[rand.Next(list.Count)];
     }
 
-    public static float RandInRange(int min, int max)
+    public static int RandInRange(int min, int max)
     {
         return rand.Next(min, max);
     }

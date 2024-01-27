@@ -134,7 +134,7 @@ public class PlayerCombat : MonoBehaviour
         cloud.cloudScaleSpeed = 1f;
         cloud.lifetime = 2.5f;
         cloud.initialVelocity = gunCloudSpeed * new Vector3(transform.localScale.x, RandInRange(1, 5) / 10.0f, 0f).normalized;
-        cloud.velocityDecay = -gunCloudDecay * new Vector3(transform.localScale.x, RandInRange(1, 5) / 10.0f, 0f).normalized;
+        cloud.velocityDecay = -gunCloudDecay * 2.5f * new Vector3(transform.localScale.x, 0f);
     }
 
     // called as an animation event
@@ -144,9 +144,6 @@ public class PlayerCombat : MonoBehaviour
         float addition = RandInRange(0, 20) / 20.0f;
         grenadeShootSource.pitch += addition;
         grenadeShootSource.Play();
-
-        //Vector2 mousePos = Input.mousePosition;
-        //Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
 
         GameObject sporeGrenade = Instantiate(sporeGrenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
         sporeGrenade.GetComponent<SporeBag>().Throw(grenadeSpawnPoint.position, grenadeShootPoint);

@@ -28,10 +28,14 @@ public class Sunflower : MonoBehaviour
     [Header("Attack Options")]
     [SerializeField] private float aggroRadius = 5f;
     [SerializeField] private float attackRadius = 2.5f;
+    [SerializeField] private float rateOfFire = 3f;
+    [SerializeField] private float timeBetweenBursts = 3f;
 
     [Header("References")]
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private List<GameObject> nectarBullets;
+    [SerializeField] private GameObject nectarBullet;
+
+    private GameObject canvas;
 
     private Path path;
     private Seeker seeker;
@@ -45,8 +49,11 @@ public class Sunflower : MonoBehaviour
     private int patrolPointIndex = 0;
     private float reachedPointTime = -1;
     private bool ascending = true;
+    private bool shooting = false;
     private Path lastPath = null;
     private Vector2 movementDirection = Vector2.zero;
+    private float startedShootWait;
+    private string currentAnim;
 
     private void Start()
     {
@@ -54,6 +61,7 @@ public class Sunflower : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        canvas = GameObject.Find("Canvas");
 
         // start pathfinding
         InvokeRepeating(nameof(UpdatePath), 0f, 0.5f);
@@ -102,6 +110,31 @@ public class Sunflower : MonoBehaviour
                 Attack();
                 break;
         }
+
+        if (path != null && !shooting && currentPathWaypoint < path.vectorPath.Count)
+        {
+            // set course for next point
+            movementDirection = ((Vector2)path.vectorPath[currentPathWaypoint] - rb.position).normalized;
+            rb.AddForce(rb.mass * speed * Time.deltaTime * movementDirection, ForceMode2D.Impulse);
+
+            UpdateSpriteDirection();
+
+            float distance = Vector2.Distance(rb.position, path.vectorPath[currentPathWaypoint]);
+            if (distance < nextWaypointDistance)
+            {
+                currentPathWaypoint += 1;
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Time.timeScale = 0f;
+            canvas.GetComponent<UIElementManager>().HUD.SetActive(false);
+            canvas.GetComponent<UIElementManager>().deathMenu.SetActive(true);
+        }
     }
 
     private void OnPathComplete(Path finishedPath)
@@ -118,7 +151,7 @@ public class Sunflower : MonoBehaviour
 
     private void UpdatePath()
     {
-        if (!seeker.IsDone() || (Time.time < reachedPointTime + stopTime && reachedPointTime != -1))
+        if (!seeker.IsDone() || (state == SunflowerState.Patrolling && (Time.time < reachedPointTime + stopTime || reachedPointTime != -1)))
             return;
 
         switch (state)
@@ -127,13 +160,13 @@ public class Sunflower : MonoBehaviour
                 seeker.StartPath(rb.position, patrolPoints[patrolPointIndex], OnPathComplete);
                 break;
             case SunflowerState.Chasing:
+                print("pathing to player");
                 seeker.StartPath(rb.position, player.transform.position, OnPathComplete);
                 break;
             case SunflowerState.Attacking:
                 Attack();
                 break;
         }
-
     }
 
     private void Patrol()
@@ -163,38 +196,32 @@ public class Sunflower : MonoBehaviour
 
             reachedPointTime = Time.time;
         }
-        else if (currentPathWaypoint < path.vectorPath.Count)
-        {
-            // set course for next point
-            movementDirection = ((Vector2)path.vectorPath[currentPathWaypoint] - rb.position).normalized;
-            UpdateSpriteDirection();
-            rb.AddForce(rb.mass * speed * Time.deltaTime * movementDirection, ForceMode2D.Impulse);
-
-            float distance = Vector2.Distance(rb.position, path.vectorPath[currentPathWaypoint]);
-            if (distance < nextWaypointDistance)
-            {
-                currentPathWaypoint += 1;
-            }
-        }
         
-        if (rb.velocity.magnitude < 0.25f)
+        
+        if (rb.velocity.magnitude < 0.25f && !shooting)
         {
-            animator.Play(SunflowerAnimStates.idle);
+            ChangeAnimState(SunflowerAnimStates.idle);
         }
         else
         {
-            animator.Play(SunflowerAnimStates.walk);
+            ChangeAnimState(SunflowerAnimStates.walk);
         }
+
+        PatrolPlayerScan();
     }
 
     private void Chase()
     {
+        if (!shooting)
+        {
+            ChangeAnimState(SunflowerAnimStates.walk);
+        }
         ChasePlayerScan();
     }
 
     private void Attack()
     {
-        if (ScanForPlayer() != null)
+        if (!shooting && Time.time > startedShootWait + timeBetweenBursts && ScanForPlayer(attackRadius) != null)
         {
             StartCoroutine(ShootGun());
         }
@@ -218,7 +245,7 @@ public class Sunflower : MonoBehaviour
 
     private void PatrolPlayerScan()
     {
-        Collider2D playerCollider = ScanForPlayer();
+        Collider2D playerCollider = ScanForPlayer(aggroRadius);
         if (playerCollider == null)
         {
             return;
@@ -229,27 +256,54 @@ public class Sunflower : MonoBehaviour
 
     private void ChasePlayerScan()
     {
-        Collider2D playerCollider = ScanForPlayer();
+        Collider2D playerCollider = ScanForPlayer(aggroRadius);
         if (playerCollider == null)
         {
             state = SunflowerState.Patrolling;
             return;
         }
 
-        // TODO: alert sound, defeat, victory
-        state = SunflowerState.Attacking;
+        if (Time.time > startedShootWait + timeBetweenBursts && ScanForPlayer(aggroRadius))
+        {
+            print("SWITCHING TO ATTACKING");
+            state = SunflowerState.Attacking;
+        }
     }
 
     private IEnumerator ShootGun()
     {
-        yield return null;
+        shooting = true;
+
+        ChangeAnimState(SunflowerAnimStates.shoot);
+        float animStartTime = Time.time;
+        while (Time.time < animStartTime + 1.5f * animator.GetCurrentAnimatorStateInfo(0).length)
+        {
+            GameObject bullet = Instantiate(nectarBullet, shootPoint.position, Quaternion.identity);
+            Vector3 direction = (player.GetComponent<PlayerMovement>().pivot.position - bullet.transform.position).normalized;
+            bullet.transform.right = direction;
+            bullet.GetComponent<PollenBullet>().trajectory = direction;
+            yield return new WaitForSeconds(1 / rateOfFire);
+        }
+
+        shooting = false;
+        startedShootWait = Time.time;
     }
 
-    private Collider2D ScanForPlayer()
+    private Collider2D ScanForPlayer(float radius)
     {
-        Collider2D playerCollider = Physics2D.OverlapCircleAll(transform.position, aggroRadius)
+        Collider2D playerCollider = Physics2D.OverlapCircleAll(transform.position, radius)
                                     .Where(collider => collider.CompareTag("Player"))
                                     .FirstOrDefault();
         return playerCollider;
+    }
+
+    private void ChangeAnimState(string animName)
+    {
+        if (currentAnim == animName)
+            return;
+
+        //Debug.Log($"Changing to {animName}");
+        animator.Play(animName);
+        currentAnim = animName;
     }
 }
