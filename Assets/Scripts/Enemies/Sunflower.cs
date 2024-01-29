@@ -160,7 +160,6 @@ public class Sunflower : MonoBehaviour
                 seeker.StartPath(rb.position, patrolPoints[patrolPointIndex], OnPathComplete);
                 break;
             case SunflowerState.Chasing:
-                print("pathing to player");
                 seeker.StartPath(rb.position, player.transform.position, OnPathComplete);
                 break;
             case SunflowerState.Attacking:
@@ -196,7 +195,6 @@ public class Sunflower : MonoBehaviour
 
             reachedPointTime = Time.time;
         }
-        
         
         if (rb.velocity.magnitude < 0.25f && !shooting)
         {
@@ -259,13 +257,13 @@ public class Sunflower : MonoBehaviour
         Collider2D playerCollider = ScanForPlayer(aggroRadius);
         if (playerCollider == null)
         {
+            print("back to patrolling");
             state = SunflowerState.Patrolling;
             return;
         }
 
         if (Time.time > startedShootWait + timeBetweenBursts && ScanForPlayer(aggroRadius))
         {
-            print("SWITCHING TO ATTACKING");
             state = SunflowerState.Attacking;
         }
     }

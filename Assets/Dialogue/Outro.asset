@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6812bfdeb167047be8aca1f23fe2af, type: 3}
+  m_Name: Outro
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Speaking: 1
+    Speaker: Cap'Tain
+    LeftImage: {fileID: 21300000, guid: 429e8750e6d61c546b41edfa207ea0eb, type: 3}
+    RightImage: {fileID: 21300000, guid: 37d0373c4962011428b3c3d3e4d457e0, type: 3}
+    Text: Excellent work, Fumigator! The resistance is lucky to have you!
+    TalkingClip: {fileID: 8300000, guid: 99ed1e55011de7340931454db91d0ca2, type: 3}

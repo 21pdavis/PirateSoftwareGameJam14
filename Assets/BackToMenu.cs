@@ -13,9 +13,4 @@ public class BackToMenu : MonoBehaviour
         button = GetComponent<Button>();
         button.onClick.AddListener(() => GameManager.Instance.TransitionTo(GameManager.GameState.Menu));
     }
-
-    private void OnEnable()
-    {
-        button.onClick.AddListener(() => GameManager.Instance.TransitionTo(GameManager.GameState.Menu));
-    }
 }
